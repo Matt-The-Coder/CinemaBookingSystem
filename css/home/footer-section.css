@@ -1,0 +1,56 @@
+.footer-section{
+    background-color: black;
+    display: grid;
+    grid-template-columns: 60%;
+    grid-template-rows: 70% 30%;
+    justify-content: center;
+}
+.footer-section .footer1{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    justify-content: center;
+    grid-column-gap: 100px;
+}
+.footer-section .footer1 ul .title{
+    font-weight: bold;
+}
+.footer-section .footer1 ul{
+    margin-top: 100px;
+}
+.footer-section .footer1 ul li{
+    margin-top: 10px;
+    cursor: pointer;
+}
+.footer-section .footer2{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 70% 30%;
+
+}
+.footer-section .footer2 .description{
+    border-top: 1px white solid;
+}
+.footer-section .footer2 .description p{
+    font-size: 12px;
+
+}
+.footer-section .footer2 .description select{
+    color: black;
+    padding: 0 75px 0 0;
+    
+}
+.footer-section .footer2 .menu{
+    display: flex;
+}
+.footer-section .footer2 .menu .menus{ 
+    margin-right: 180px;}
+.footer-section .footer2 .menu ul{
+    display: flex;
+   
+}
+.footer-section .footer2 .menu ul li{
+    font-size: 12px;
+    text-decoration: underline;
+    margin-right: 10px;
+}

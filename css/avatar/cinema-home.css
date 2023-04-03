@@ -1,0 +1,59 @@
+   /* Default */
+   html, body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;;
+  }
+.cinema-home{
+    display: grid;
+   grid-template-columns: 80%;
+   grid-template-rows: 120px 1fr;
+   justify-content: center;
+  
+  
+}
+/* Cinema Title */
+.cinema-home .cinema-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    border-radius: 5px;
+}
+.cinema-title h1{
+    padding: 0;
+    margin: 0;
+    margin-left: 60px;
+    font-weight: 900;
+    font-size: 50px;
+    color:rgb(250, 241, 249);
+    
+}
+.cinema-home .cinema-title h1 span{
+    color: rgb(3, 175, 255);
+    text-decoration:overline;
+}
+/* Cinema Seats */
+.cinema-home .cinema-seats{
+    opacity: 0.8;
+    background-color: rgb(221, 242, 252);
+    display: grid;
+    border: 2px rgb(170, 211, 221) solid;
+    border-bottom: none;
+    border-radius: 80px;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 1fr 1fr 1fr;
+    
+}
+.cinema-home .cinema-seats .seat img{
+    cursor: pointer;
+}
+.cinema-home .cinema-seats .seat{
+    margin: 1px;
+}
+.cinema-home .cinema-seats p{
+    margin: 0;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+}

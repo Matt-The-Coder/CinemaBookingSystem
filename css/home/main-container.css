@@ -1,0 +1,30 @@
+@import url(./nav-section.css);
+@import url(./home-section.css);
+@import url(./cinema-section.css);
+@import url(./upper-footer-section.css);
+@import url(./footer-section.css);
+@import url(./about-section.css);
+
+
+/*Default*/
+*{
+    color: rgb(255, 255, 255);
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+a{
+    text-decoration: none;
+}
+ul{ 
+    list-style: none;
+}
+
+.main-container{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 15vh 85vh 110vh 100vh 30vh 70vh;
+    background-image: url(../../Assets/about-section-bg.jpg);
+}

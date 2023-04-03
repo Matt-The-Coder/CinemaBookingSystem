@@ -1,0 +1,33 @@
+.home-section{
+    background-image: url(../../Assets/cinema-seats.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+.home-section .section1{
+    background-color: rgb(17, 0, 0);
+    opacity: 0.5;
+    border-radius: 5px;
+    transition: 0.3s ease-in;
+}
+.home-section .section1 p{ 
+   text-align: center;
+    margin-top: 110px;
+    font-size: 35px;
+    line-height: 1;
+}
+.home-section .section1:hover{
+    background-color: rgb(100, 14, 14);
+    opacity: 0.5;
+}
+.home-section .section2{
+    background-image: url("../../Assets/home-section-3dglasses.png");
+    background-position: center;
+    background-size: 450px;
+    background-repeat: no-repeat;
+}

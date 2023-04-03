@@ -1,0 +1,28 @@
+.upper-footer-section{
+    background-image: url("../../Assets/about-section-bg.webp");
+    display: flex;
+    justify-content: center;
+   
+}
+.upper-footer-section img{
+    margin-top: 30px;
+}
+.upper-footer-section .footer-text{
+    text-align: justify;
+}
+.upper-footer-section .footer-text pre{
+    font-size: 30px;
+    font-weight: 900;
+    margin-top: 20px;
+}
+.upper-footer-section a button{
+    padding: 13px 22px;
+    cursor: pointer;
+    margin-top: 50px;
+    margin-left: 100px;
+    background-color: blue;
+    border: none;
+    border-radius: 5px;
+    font-weight: bolder;
+   
+}
