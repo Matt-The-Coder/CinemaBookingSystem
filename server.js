@@ -15,10 +15,12 @@ app.use('/static', express.static(path.join(__dirname, "./frontend/static")))
 app.set("views", path.join(__dirname, "./frontend/views"))
 app.set("view engine", "ejs")
 
+const db = require("./backend/database/connection")
 
-app.listen(PORT, ()=>{
+app.listen(PORT, async ()=>{
     console.log(`Server Started at port ${PORT}`)
-    console.log()
+
+    // console.log(await db(""))
 
 })
 
