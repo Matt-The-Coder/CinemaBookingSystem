@@ -14,7 +14,8 @@ const adminroute = require("./backend/routes/adminroute")
 app.use('/static', express.static(path.join(__dirname, "./frontend/static")))
 // For view engine
 app.set("views", path.join(__dirname, "./frontend/views"))
-app.set("views", path.join(__dirname, "./frontend/views/admin"))
+
+
 app.set("view engine", "ejs")
 
 const db = require("./backend/database/connection")
@@ -26,4 +27,5 @@ app.listen(PORT, async ()=>{
 
 })
 
-app.use("/", homeroute, adminroute)
+app.use("/", homeroute)
+app.use("/", adminroute)
