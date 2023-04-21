@@ -4,7 +4,8 @@ const bodyParser = require("body-parser");
 const path = require("path")
 const PORT = process.env.PORT || 1000;
 const app = express()
-
+const movieservices = require("./backend/services/movies/movies")
+const {selectmovie, deletemovie, updatemovie, addmovie} = movieservices()
 app.use(express.json())
 app.use(bodyParser.json())
 //ROUTES
@@ -23,7 +24,8 @@ const db = require("./backend/database/connection")
 app.listen(PORT, async ()=>{
     console.log(`Server Started at port ${PORT}`)
 
-    // console.log(await db(""))
+    await deletemovie(1)
+    console.log(await selectmovie())
 
 })
 
