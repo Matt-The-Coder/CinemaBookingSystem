@@ -10,6 +10,7 @@ app.use(express.json())
 app.use(bodyParser.json())
 //ROUTES
 const homeroute = require("./backend/routes/homeroute")
+const homeuser = require("./backend/routes/homeuser")
 const adminroute = require("./backend/routes/adminroute")
 // For static files
 app.use('/static', express.static(path.join(__dirname, "./frontend/static")))
@@ -24,10 +25,9 @@ const db = require("./backend/database/connection")
 app.listen(PORT, async ()=>{
     console.log(`Server Started at port ${PORT}`)
 
-    await deletemovie(1)
-    console.log(await selectmovie())
+    
 
 })
-
+app.use("/", homeuser)
 app.use("/", homeroute)
 app.use("/", adminroute)
