@@ -30,13 +30,13 @@ hassle-free booking system.</pre>
 
      <div class="login-form">
         <h1>Login</h1>
-<form action="">
- <Label>Username</Label>
- <input type="text" id="name" placeholder="Enter your name" style="text-align: left;">
- <Label>Password</Label>
- <input type="password" id="password" placeholder="Enter your password">
+<form>
+ <Label for="name">Username</Label>
+ <input type="text" id="name" name="userName" placeholder="Enter your name">
+ <Label for="password">Password</Label>
+ <input type="password" id="password" name="password" placeholder="Enter your password">
  <div class="btn">
-    <button id="login-btn">Login</button>
+    <button type="submit" id="login-btn">Login</button>
     <button><a href="/register">Register</a></button>
  </div>
  
@@ -47,5 +47,5 @@ hassle-free booking system.</pre>
 </div>
 
 </body>
-<script src="../static/js/login.js"></script>
+<!-- <script src="../static/js/login.js"></script> -->
 </html>

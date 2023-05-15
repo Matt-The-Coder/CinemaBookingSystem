@@ -32,19 +32,11 @@ module.exports = ()=>{
             return error 
         }
     }
-    const authacc = async (CustomerName, password)=>{
-        try {
-            const query = `SELECT * FROM users WHERE CustomerName = '${CustomerName}' and password = '${password}'`
-            return await db(query)
-        } catch (error) {
-            return error 
-        }
-    }
+   
     return{
         createaccount : createacc,
         deleteaccount: deleteacc,
-        authenticateacc: authacc,
         updateaccount : updateacc,
-        showaccount: showacc
+        getAccounts: showacc
     }
 }
