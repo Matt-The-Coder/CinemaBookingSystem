@@ -8,65 +8,94 @@ const accservices = require("../services/users/users");
 
 const {createaccount, deleteaccount, updateaccount, getAccounts }= accservices();
 
+routes.post("/login", passport.authenticate('local', {
+    successRedirect: "/home",
+    failureRedirect:"/login",
+    failureFlash:true
+    }), (req, res)=>{
+        res.json({message: req.message})
+    })
+
+
 //PASSPORT AUTH
-const initializePassport = require('../passport-config/passport')
+const initializePassport = require('../passport-config/passport');
+const route = require("./adminroute");
 
 initializePassport(passport, 
     async (Username) => {
         const users = await getAccounts();
-        users.find(user => user.CustomerName === Username)},
+        return users.find(user => user.CustomerName == Username)},
     async (CustomerID) => {
         const users = await getAccounts();
-        users.find(user => user.CustomerID == CustomerID)
+        return users.find(user => user.CustomerID == CustomerID)
     } 
     )
 
-const checkAuthenticated = (req, res, next) => {
+const checkIfAuthenticated = (req, res, next) => {
     if(req.isAuthenticated()){
         return next()
     }
     res.redirect('/login')
 }
 
-const checkNotAuthenticated = (req, res, next) =>{
+const alreadyAuthenticated = (req, res, next) =>{
     if(req.isAuthenticated()){
-        res.redirect('/')
+        res.redirect('/home')
     }
     return next()
 }
-
-routes.get("/login", checkNotAuthenticated, (req, res)=>{
+//LOGIN
+routes.get("/login", alreadyAuthenticated, async (req, res)=>{
     res.render("login")
-
+    
+//WHEN LOGGED IN
 })
-routes.get("/home", checkAuthenticated, (req, res)=>{
-    res.render("homeuser")
+routes.get("/home", checkIfAuthenticated, (req, res)=>{
+    res.render("./user/homeuser", ({user: req.user}))
+})
+//USER PROFILE
+route.get('/profile', (req, res)=>{
+    res.render('./user/profile')
+})
+route.get("/profile/bookings", (req, res)=>{
+    res.render("./user/bookings")
+})
+route.get("/profile/favorites", (req, res)=>{
+    res.render("./user/favorites")
 })
 
-routes.post("/login", passport.authenticate('local', {
-successRedirect: "/homeuser",
-failureRedirect:"/login",
-failureFlash:true
-}))
 
-routes.get("/register", checkNotAuthenticated, (req, res)=>{
+//REGISTER
+routes.get("/register", alreadyAuthenticated, (req, res)=>{
     res.render("register")
-    
-    
 })
-routes.post("/register", checkNotAuthenticated, async (req, res)=>{
+routes.post("/register", alreadyAuthenticated,  async (req, res)=>{
     try {
         const {user, pass} = req.body
-        // const hashedpassword = await bcrypt.hash(pass, 10)
+        if(user == "" || pass == ""){  
+            res.json({message: "Please fill-up all the fields!"})  
+        }
+        else{
+            const hashedPassword = await bcrypt.hash(pass, 10)
         res.json({message: "Registered Successfully!"})
-        await createaccount(user, pass)
-            
+        await createaccount(user, hashedPassword)}
+
     } catch (error) {
         res.status(500).json({message: "Unsuccessful!"})
     }
 })
 
-routes.get("/", checkNotAuthenticated, (req, res)=>{
+//LOGOUT
+routes.delete('/logout', (req, res)=>{
+    req.logOut(()=>{
+        res.redirect('/login')
+    })
+   
+})
+
+
+//DEFAULT HOME ROUTE
+routes.get("/", alreadyAuthenticated, (req, res)=>{
     res.render("home")
 } )
 

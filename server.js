@@ -18,9 +18,10 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }))
+app.use(methodOverride('_method'))
 app.use(passport.initialize())
 app.use(passport.session())
-app.use(methodOverride('_method'))
+// app.use(methodOverride('_method'))
 
 
 //middleWare

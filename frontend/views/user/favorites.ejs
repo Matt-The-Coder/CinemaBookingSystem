@@ -1,0 +1,35 @@
+<%-include("./partials/header.ejs")%>
+
+    <body>
+        <div class="main">
+            <div class="nav-bar">
+                <h1>CINEMA <span>BOOK</span> </h1>
+                <p id="menu">MENU</p>
+                <a href="/profile"><div class="nav-list">
+                    <li><i class="fa-solid fa-house"></i></i><p>Home</p> </li>
+                </div></a>
+                    <a href="/profile/bookings"><div class="nav-list">
+                        <li><i class="fa-solid fa-book-open-reader"></i><p>Bookings</p> </li>
+                    </div></a>
+                    <a href="/profile/favorites"><div class="nav-list">
+                        <li><i class="fa-solid fa-film"></i><p>Favorites</p> </li>
+                    </div></a>
+                
+                  
+               <div class="logout">
+                <form action="/logout?_method=DELETE" method="post">
+                    <button type="submit">Logout</button>
+                </form>
+              
+                </div>
+                   
+               
+               
+            </div>
+            <div class="home-data">
+                <h1>WELCOME ADMIN!</h1>
+            </div>
+        </div>
+    </body>
+
+    </html>

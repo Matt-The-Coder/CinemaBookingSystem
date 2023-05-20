@@ -10,7 +10,7 @@ module.exports = ()=>{
     }
     const updateacc = async (CustomerID, CustomerName, password)=>{
         try {
-            const query = `UPDATE users SET CustomerName = ${CustomerName}, password = ${password} W Customer ID = ${CustomerID}`
+            const query = `UPDATE users SET CustomerName = ${CustomerName}, password = ${password} WHERE CustomerID = ${CustomerID}`
             await db(query)
         } catch (error) {
             return error 
@@ -18,7 +18,7 @@ module.exports = ()=>{
     }
     const deleteacc = async (CustomerID)=>{
         try {
-            const query = `DELETE FROM users W Customer ID = ${CustomerID}`
+            const query = `DELETE FROM users WHERE CustomerID = ${CustomerID}`
             await db(query)
         } catch (error) {
             return error 
