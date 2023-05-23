@@ -8,6 +8,7 @@
     <link rel="icon" href="../../static/Assets/admin-header-icon.png">
     <link rel="stylesheet" href="../../static/css/admin/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	
 	<script>
 		// Check local storage
 		let localS = localStorage.getItem('theme'),
@@ -145,7 +146,7 @@
 			</ul>
 
 			<a href="#">
-				<span>Welcome, admin</span>
+				<span>Welcome Admin!</span>
 				<i class="fa-sharp fa-solid fa-user" style="color: #888d96;"></i>
 			</a>
 		</nav>
@@ -222,11 +223,68 @@
 
 		<div id="main-content">
 			<div id="main-content__container">
-				<p>This is the page content</p>
+				
+				<div class="adminContent">
+				<div class="servicesContainer">
+					<div class="create">
+						<h1>Create Account</h1>
+						<form>
+							<input type="text" placeholder="Enter your Admin Name" id="adminName" required>
+							<input type="text" placeholder="Enter your Password"  id="password" required>
+							<button id="create-btn" type="submit">CREATE</button>
+						</form>
+					</div>
+					<div class="delete">
+						<h1>Delete Account</h1>
+						<form>
+							<input type="text" placeholder="Enter your Admin ID" id="adminID" required>
+							<button id="del-btn" type="submit">DELETE</button>
+						</form>
+					</div>
+					<div class="edit">	
+						<h1>Edit Account</h1>
+						<form>
+							<input type="text" placeholder="Enter your Admin ID" required>
+							<input type="text" placeholder="Enter your Admin Name" required>
+							<input type="text" placeholder="Enter your Password"  required>
+							<button id="edit-btn" type="submit">EDIT</button>
+						</form>
+					
+					</div>
+				
+				</div>
+				
+				
+			<div class="tableContainer">
+				<table>
+					<thead>
+						<tr>
+							<th>Admin ID</th>
+							<th>Admin Name</th>
+							<th>Password</th>
+						</tr>
+					</thead>
+					<tbody>
+					<% for (let i = 0; i<admin.length; i++){ %>
+						<tr>
+							<td><%=admin[i].adminID%></td>
+							<td><%=admin[i].adminname%></td>
+							<td><%=admin[i].password%></td>
+						</tr>
+					<% } %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+
+
+
 			</div>
 		</div> <!-- main-content -->
 	</section> <!-- main -->
 
     <script src="../../static/js/admin.js"></script>
+	<script src="../../static/js/admin/index.js"></script>
 </body>
 </html>

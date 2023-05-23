@@ -8,6 +8,7 @@
 
 /*Default*/
 *{
+    scroll-behavior: smooth;
     color: rgb(255, 255, 255);
     margin: 0;
     padding: 0;
@@ -16,6 +17,7 @@
 }
 a{
     text-decoration: none;
+    transition: all 0.3s ease-in-out;
 }
 ul{ 
     list-style: none;

@@ -8,7 +8,7 @@ const accservices = require("../services/users/users");
 
 const {createaccount, deleteaccount, updateaccount, getAccounts }= accservices();
 
-routes.post("/login", passport.authenticate('local', {
+routes.post("/login", passport.authenticate('user', {
     successRedirect: "/home",
     failureRedirect:"/login",
     failureFlash:true
@@ -19,7 +19,7 @@ routes.post("/login", passport.authenticate('local', {
 
 //PASSPORT AUTH
 const initializePassport = require('../passport-config/passport');
-const route = require("./adminroute");
+
 
 initializePassport(passport, 
     async (Username) => {
@@ -54,13 +54,13 @@ routes.get("/home", checkIfAuthenticated, (req, res)=>{
     res.render("./user/homeuser", ({user: req.user}))
 })
 //USER PROFILE
-route.get('/profile', (req, res)=>{
+routes.get('/profile', (req, res)=>{
     res.render('./user/profile')
 })
-route.get("/profile/bookings", (req, res)=>{
+routes.get("/profile/bookings", (req, res)=>{
     res.render("./user/bookings")
 })
-route.get("/profile/favorites", (req, res)=>{
+routes.get("/profile/favorites", (req, res)=>{
     res.render("./user/favorites")
 })
 

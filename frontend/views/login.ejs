@@ -35,15 +35,16 @@ hassle-free booking system.</pre>
  <input type="text" id="name" name="userName" placeholder="Enter your name" required>
  <Label for="password">Password</Label>
  <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
  <div class="btn">
-    <button type="submit" id="login-btn" 
+ <button type="submit" id="login-btn" 
     <% if (messages.error ){ %>
      onclick="showMessage('<%=messages.error%>')"
-    <% } %>
-     
-     >Login</button>
-    <button><a href="/register">Register</a></button>
- </div>
+    <% } %> >Login</button>
+     <a href="/register">
+      
+      <button type="button">Register</button></a>
+   </div>
  
 
 </form>

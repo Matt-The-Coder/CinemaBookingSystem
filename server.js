@@ -13,15 +13,25 @@ const app = express()
 app.set('view-engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 app.use(flash())
-app.use(session({
-  secret: process.env.SESSION_SECRET,
+app.use( session({
+  secret: process.env.SESSION_SECRET1,
   resave: false,
   saveUninitialized: false
 }))
+app.use( passport.initialize())
+app.use( passport.session())
+
+
+app.use('/admin', session({
+  secret: process.env.SESSION_SECRET2,
+  resave: false,
+  saveUninitialized: false
+}))
+app.use('/admin', passport.initialize())
+app.use('/admin', passport.session())
 app.use(methodOverride('_method'))
-app.use(passport.initialize())
-app.use(passport.session())
-// app.use(methodOverride('_method'))
+
+
 
 
 //middleWare
