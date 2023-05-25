@@ -23,7 +23,7 @@ app.use( passport.session())
 
 
 app.use('/admin', session({
-  secret: process.env.SESSION_SECRET2,
+  secret: "Session",
   resave: false,
   saveUninitialized: false
 }))
