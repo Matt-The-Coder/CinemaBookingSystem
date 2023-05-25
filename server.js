@@ -14,7 +14,7 @@ app.set('view-engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 app.use(flash())
 app.use( session({
-  secret: process.env.SESSION_SECRET1,
+  secret: "secret1",
   resave: false,
   saveUninitialized: false
 }))
@@ -23,7 +23,7 @@ app.use( passport.session())
 
 
 app.use('/admin', session({
-  secret: "Session",
+  secret: "Secret2",
   resave: false,
   saveUninitialized: false
 }))
