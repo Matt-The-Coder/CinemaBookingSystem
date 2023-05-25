@@ -1,25 +1,28 @@
 const db = require("../../database/connection")
 
 module.exports =()=>{
-    const add = async (Movie, PictureFile, Date1, Date2)=>{
+    const add = async (MovieTitle, PictureFile, Genre, MovieDuration)=>{
         try {
-           const query = `INSERT INTO book (Movie, PictureFile, Date1, Date2) values ('${Movie}', '${PictureFile}', ${Date1}, ${Date2})` 
+            const query = `INSERT INTO movie (MovieTitle, PictureFile, Genre, MovieDuration) values ('${MovieTitle}', '${PictureFile}', '${Genre}', ${MovieDuration});`
+               const query2 = `INSERT INTO book (Movie) values('${MovieTitle}');`;
+            await db(query);
+            await db(query2)
+          } catch (error) {
+            console.log(error);
+          }
+        }
+    const update = async (MovieID, MovieTitle, PictureFile, Genre, MovieDuration)=>{
+        try {
+           const query = `UPDATE movie SET MovieTitle = '${MovieTitle}', PictureFile = '${PictureFile}', 
+           Genre = '${Genre}', MovieDuration = ${MovieDuration} WHERE MovieID = ${MovieID}` 
            await db(query);
         } catch (error) {
             console.log(error)
         }
     }
-    const update = async (movie, bookingid)=>{
+    const deletedata = async (MovieID)=>{
         try {
-           const query = `UPDATE book SET Movie = '${movie}' WHERE BookingID = ${bookingid}` 
-           await db(query);
-        } catch (error) {
-            console.log(error)
-        }
-    }
-    const deletedata = async (bookingid)=>{
-        try {
-           const query = `DELETE FROM book where BookingID = ${bookingid} ` 
+           const query = `DELETE FROM movie where MovieID = ${MovieID} ` 
            await db(query);
         } catch (error) {
             console.log(error)
@@ -27,7 +30,7 @@ module.exports =()=>{
     }
     const select = async ()=>{
         try {
-           const query = `SELECT * FROM book` 
+           const query = `SELECT * FROM movie` 
            const result = await db(query);
            return result;
         } catch (error) {

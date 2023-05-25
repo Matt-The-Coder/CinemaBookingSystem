@@ -2,15 +2,18 @@ const db = require("../../database/connection")
 module.exports = ()=>{
     const createacc =async(adminname, password)=>{
         try {
+            
             const query = `INSERT INTO admins (adminname, password) values ('${adminname}', '${password}')`
-            await db(query);
+            
+          const queried =  await db(query);
+         
         } catch (error) {
             return error
         }
     }
     const updateacc = async (adminID, adminname, password)=>{
         try {
-            console.log("Queried")
+            
             const query = `UPDATE admins SET adminname = '${adminname}', password = '${password}' WHERE adminID = ${adminID}`
             await db(query)
             

@@ -2,9 +2,11 @@ const express = require('express');
 const route = express.Router()
 const adminServices = require('../services/admins/admin')
 const userServices = require('../services/users/users')
+const movieServices = require('../services/movies/movies')
 const bcrypt = require('bcrypt')
 const {getAccounts, deleteAccount, updateAccount, createAccount} = adminServices()
 const {createaccount, deleteaccount, updateaccount, getAccounts: getaccount} = userServices()
+const {selectmovie, updatemovie, deletemovie, addmovie} = movieServices()
 //PASSPORT AUTH
 const initializePassports = require('../passport-config/adminPassport');
 const passport = require('passport');
@@ -51,27 +53,29 @@ route.delete('/admin/logout', (req, res)=>{
         res.redirect('/admin/login')
     })
 })
-route.get("/admin", (req, res)=>{
+route.get("/admin", checkIfAuthenticated, (req, res)=>{
     res.render("./admin/home")
 })
-route.get('/admin/admins', async (req, res) => {
+route.get('/admin/admins',  checkIfAuthenticated, async (req, res) => {
     const admin = await getAccounts();
-   
     res.render('./admin/admins', { admin: admin });
   });
   
-route.get("/admin/bookings", async (req, res)=>{
+route.get("/admin/bookings", checkIfAuthenticated, async (req, res)=>{
     const user = await getaccount()
     res.render("./admin/bookings", {user: user})
 })
-route.get("/admin/movies",  (req, res)=>{
-    res.render("./admin/movies")
+route.get("/admin/movies", checkIfAuthenticated, async (req, res)=>{
+    
+    const movies = await selectmovie()
+
+    res.render("./admin/movies", {movie: movies})
 })
-route.get("/admin/users", async (req, res)=>{
+route.get("/admin/users", checkIfAuthenticated, async (req, res)=>{
     const user = await getaccount()
     res.render("./admin/users", {user: user})
 })
-
+//ACCOUNTS
 route.post("/admin/register",  async (req, res)=>{
     try {
         const {adminName, password} = req.body
@@ -82,7 +86,7 @@ route.post("/admin/register",  async (req, res)=>{
             const hashedPassword = await bcrypt.hash(password, 10)
         res.json({message: "Registered Successfully!"})
         await createAccount(adminName, hashedPassword)}
-
+           
     } catch (error) {
         res.status(500).json({message: "Unsuccessful!"})
     }
@@ -120,4 +124,44 @@ route.post("/admin/edit",  async (req, res)=>{
     }
 })
 
+//MOVIES
+
+route.post("/admin/movie/create",  async (req, res)=>{
+    try {
+        const {movie, poster, genre, duration} = req.body
+        if(movie == "" || poster == "" || genre =="" || duration==""){
+            res.json({message: "Please Fill-up all the fields!"})
+
+        }
+        await addmovie(movie, poster, genre, duration)
+        res.json({message: "Added Successfully!"})
+
+    } catch (error) {
+        res.status(500).json({message: "Unsuccessful!"})
+    }
+})
+
+route.delete("/admin/movie/delete",  async (req, res)=>{
+    try {
+        const {movieID} = req.body
+       
+        await deletemovie(movieID)
+        res.json({message: "Removed Successfully!"})
+    
+
+    } catch (error) {
+        res.status(500).json({message: "Unsuccessful!"})
+    }
+})
+
+route.post("/admin/movie/edit",  async (req, res)=>{
+    try {
+        const {movieID, movie, poster, genre, duration} = req.body
+        await updatemovie(movieID, movie, poster, genre, duration)
+        res.json({message: "Updated Successfully!"})
+
+    } catch (error) {
+        res.status(500).json({message: "Unsuccessful!"})
+    }
+})
 module.exports = route;

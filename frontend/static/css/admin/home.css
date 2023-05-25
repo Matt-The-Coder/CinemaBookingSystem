@@ -303,6 +303,7 @@ body.sidebar-open #sidebar {
 	box-shadow: rgb(59, 57, 57) 3px 2px;
 }
 .tableContainer {
+	margin-top: 20px;
 	justify-content: center;
 }
 .tableContainer tr, .tableContainer th, .tableContainer table, .tableContainer td{

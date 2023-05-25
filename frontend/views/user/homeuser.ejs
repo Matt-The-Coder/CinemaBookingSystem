@@ -40,53 +40,92 @@
                
             </div>
         </div>
-        <div class="cinema-section" id="cinema-section">
-          <div class="cinema-section-title">
-            <h1>List of all available <span>movies</span> </h1>
-          </div>
-          <div class="cinema-section-list">
-            <div class="section1">
-                <h1>DEMON SLAYER: TO THE SWORDSMITH VILLAGE ARC</h1>
-                <a class="b1" target="_blank" href="">
-                    <button style="background-image: url(../static/Assets/cinema-section-unknownbg.png);
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    background-size: cover;"></button></a>
-                <h1>AVATAR: THE WAY OF WATER</h1>
-                <a class="b2" target="_blank" href="">
-                    <button style="background-image: url(../static/Assets/cinema-section-unknownbg.png);
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    background-size: cover;"></button></a>
-                <h1>UNAVAILABLE</h1>
-                <a href="javascript:void(0)" target="_blank">
-                    <button style="background-image: url(../static/Assets/cinema-section-unknownbg.png);
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    background-size: cover;"></button></a>
-                <h1>UNAVAILABLE</h1>
-                <a href="javascript:void(0)" target="_blank">
-                    <button style="background-image: url(../static/Assets/cinema-section-unknownbg.png);
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    background-size: cover;"></button></a>
-                <h1>UNAVAILABLE</h1>
-                <a href="javascript:void(0)" target="_blank"><button></button></a>
+        
+        <div class="products-section" id="products">
+            <h2>LIST OF  AVAILABLE<span>MOVIES</span></h2>
+            <div class="products-list">
+              <% for (const movies of movie) {%>
+              <div class="product">
+                <div class="hover-details">
+                  <div class="price-container">
+                    <p><%= movies.MovieTitle %></p>
+                    <p><%= movies.MovieDuration %></p>
+                  </div> 
+                  <div class="image-container" id="modal-form">
+                    <i class="fa-solid fa-cart-plus" style="color: #111212;"></i>
+                  </div>
+                </div>
+                <div class="burger-container">
+                  <div class="image-container">
+                    <img
+                      src="../../static/Assets/picture-posters/<%=movies.PictureFile%>.jpg"
+                      alt="product classic burger" height="250px" width=" 250px"
+                    />
+                  </div>
+                  <p><%= movies.MovieTitle %> </p>
+                </div>
+                <div class="price-container">
+                  <p><%= movies.MovieDuration %></p>
+                  <div class="image-container">
+                    <i class="fa-solid fa-cart-plus" style="color: #111212;"></i>
+                  </div>
+                </div>
+              </div>
+              <% }%>
             </div>
-            <div class="section2">
-                <h1>UNAVAILABLE</h1>
-                <a href="javascript:void(0)"><button></button></a>
-                <h1>UNAVAILABLE</h1>
-                <a href="javascript:void(0)"><button></button></a>
-                <h1>UNAVAILABLE</h1>
-                <a href="javascript:void(0)"><button></button></a>
-                <h1>UNAVAILABLE</h1>
-                <a href="javascript:void(0)"><button></button></a>
-                <h1>UNAVAILABLE</h1>
-                <a href="javascript:void(0)"><button></button></a>
-            </div>
+            <div class="modal">
+                <div class="bg-modal">
+                    <div class="modal-contents">
+                
+                        <div class="close">+</div>
+                       <h1 style="color:#111212">Book Now!</h1>
+                        <div class="info">
+                            <h3 style="color: #111212;" >Name: <%=user.CustomerName%></h3>
+                        </div>
+                        
+                            <input type="hidden" id="userid" value="<%=user.CustomerID%>">
+                            <input type="hidden" id="username" value="<%=user.CustomerName%>" >
+                            <input type="hidden" id="userpassword" value="<%=user.password%>" >
+                            <label style="color: #111212; display:block;" for="">Pick a Movie:</label>
+                            <select name="sMovie" id="sMovie" style="color: #111212; padding: 10px 12px;">
+                                <option value="">Select One:</option>
+                                <% for (const movies of movie) { %>
+                                <option value="<%=movies.MovieTitle%>" style="color: #111212;"><%=movies.MovieTitle%></option>
+                                <% } %>
+                              </select>
+                           <label style="color: #111212; display: block;" for="">Pick Date:</label>
+                           <input type="date" id="sDate" style="color: #111212;">
+                           <label style="color: #111212; display: block;" for="">Pick Time:</label>
+                           <input type="time" name="sTime" id="sTime" style="color: #111212;">
+                           <label style="color: #111212; display: block; padding: 8px 12px;" for="">Pick your Seat:</label>
+                            <select name="sSeat" id="sSeat" style="color: #111212;">
+                                <option value="" >Select One:</option>
+                               <option value="seat1" style="color: #111212;" >Seat 1</option>
+                               <option value="seat2" style="color: #111212;">Seat 2</option>
+                               <option value="seat3" style="color: #111212;">Seat 3</option>
+                               <option value="seat4" style="color: #111212;">Seat 4</option>
+                               <option value="seat5" style="color: #111212;">Seat 5</option>
+                               <option value="seat6" style="color: #111212;">Seat 6</option>
+                               <option value="seat7" style="color: #111212;">Seat 7</option>
+                               <option value="seat8" style="color: #111212;">Seat 8</option>
+                               <option value="seat9" style="color: #111212;">Seat 9</option>
+                               <option value="seat10" style="color: #111212;">Seat 10</option>
+                               <option value="seat11" style="color: #111212;">Seat 11</option>
+                               <option value="seat12" style="color: #111212;">Seat 12</option>
+                               <option value="seat13" style="color: #111212;">Seat 13</option>
+                               <option value="seat14" style="color: #111212;">Seat 14</option>
+                               <option value="seat15" style="color: #111212;">Seat 15</option>
+                            </select>
+                           <center><button id="submitbtn" class="button" style="color: #fcfcfc; 
+                            background-color: #111212; cursor: pointer;
+                            border-radius: 10px; padding: 5px 8px; display: block; margin-top: 10px;" type="submit">Submit</button></center> 
+                       
+                
+                    </div>
+                </div>
+              </div>
           </div>
-        </div>
+        
         <div id="about-section" class="about-section">
            <div class="about-container">
             <div class="title">
@@ -162,5 +201,5 @@
         </div>
     </div>
 </body>
-
+<script src="../../static/js/user/booking-form.js"></script>
 </html>

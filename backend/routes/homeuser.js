@@ -4,9 +4,12 @@ const passport = require("passport")
 const bcrypt = require('bcrypt')
 require('dotenv').config()
 //services
+const movieServices = require('../services/movies/movies')
 const accservices = require("../services/users/users");
-
-const {createaccount, deleteaccount, updateaccount, getAccounts }= accservices();
+const book = require('../services/bookings/booking')
+const {selectmovie, updatemovie, deletemovie, addmovie} = movieServices();
+const {createaccount, deleteaccount, updateaccount, getAccounts, cinema }= accservices();
+const  {booking}= book();
 
 routes.post("/login", passport.authenticate('user', {
     successRedirect: "/home",
@@ -50,8 +53,11 @@ routes.get("/login", alreadyAuthenticated, async (req, res)=>{
     
 //WHEN LOGGED IN
 })
-routes.get("/home", checkIfAuthenticated, (req, res)=>{
-    res.render("./user/homeuser", ({user: req.user}))
+routes.get("/home", checkIfAuthenticated, async (req, res)=>{
+    const movies = await selectmovie()
+    const books = await booking()
+    console
+    res.render("./user/homeuser", ({user: req.user, movie:movies, cinema:books}))
 })
 //USER PROFILE
 routes.get('/profile', (req, res)=>{
@@ -95,10 +101,20 @@ routes.delete('/logout', (req, res)=>{
 
 
 //DEFAULT HOME ROUTE
-routes.get("/", alreadyAuthenticated, (req, res)=>{
-    res.render("home")
+routes.get("/", alreadyAuthenticated, async (req, res)=>{
+    const movies = await selectmovie()
+    res.render("home", ({movie:movies}))
+    
 } )
 
+routes.post("/book", async (req, res)=>{
+   
+    const {CustomerID, CustomerName, password, seat, time, date, movie}= req.body
+   
+    await cinema(CustomerID, CustomerName, password, seat, time, date, movie)
+    
+    res.json({message: "Booked Successfully!"});
 
+})
 
 module.exports = routes
