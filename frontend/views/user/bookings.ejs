@@ -20,14 +20,37 @@
                 <form action="/logout?_method=DELETE" method="post">
                     <button type="submit">Logout</button>
                 </form>
-              
+                <a href="/home"><button>< Go Back</button></a>
                 </div>
                    
                
                
             </div>
             <div class="home-data">
-                <h1>WELCOME ADMIN!</h1>
+               <div class="booking-content">
+                <center><h1>Bookings</h1></center>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Movie</th>
+                            <th>Time</th>
+                            <th>Date</th>
+                            <th>Seat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    
+                            <tr>
+                                <td><%=user.MoviePicked%></td>
+                                <td><%=user.Time%></td>
+                                <td><%=user.Date%></td>
+                                <td><%=user.SeatNo%></td>
+                            </tr>
+                       
+                    </tbody>
+                </table>
+               </div>
+
             </div>
         </div>
     </body>

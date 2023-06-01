@@ -1,10 +1,10 @@
 const mysql = require("mysql");
 
 const db = mysql.createPool({
-    user: "admin",
-    password: "55SDcKGB",
-    host: "mysql-128019-0.cloudclusters.net",
-    port: "19922",
+    user: "Matthew",
+    password: "",
+    host: "localhost",
+    port: "3307",
     database: "cinemabook"
 })
 

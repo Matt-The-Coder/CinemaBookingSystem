@@ -10,18 +10,20 @@ module.exports = ()=>{
     }
     const updateacc = async (CustomerID, CustomerName, password)=>{
         try {
+         
             const query = `UPDATE users SET CustomerName = '${CustomerName}', password = '${password}' WHERE CustomerID = ${CustomerID}`
             await db(query)
+            
         } catch (error) {
             return error 
         }
     }
     const updatebook = async (CustomerID, CustomerName, password, seat, time, date, movie) => {
         try {
-            console.log("before");
+          
             const query = `UPDATE users SET CustomerName = '${CustomerName}', password = '${password}', SeatNo = '${seat}', Time = '${time}', Date = '${date}', MoviePicked = '${movie}' WHERE CustomerID = ${CustomerID}`;
             await db(query);
-            console.log("after");
+           
         } catch (error) {
             return error;
         }

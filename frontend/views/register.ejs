@@ -36,15 +36,24 @@ hassle-free booking system.</pre>
  <Label>Password</Label>
  <input type="password" id="password" name="password" placeholder="Enter your password" required>
  <div class="btn">
-    <button><a href="/login">Login</a></button>
+   <button onclick="redirectToPage()">Login</button>
     <button id="register-btn">Register</button>
  </div>
  
 
 </form>
-<button id="backbtn"><a href="/">Back to Homepage</a></button>
+<a href="./"> <button id="backbtn">Back to Homepage</button></a>
      </div>
 </div>
 </body>
 <script src="../static/js/register.js"></script>
+<script>
+   function redirectToPage() {
+       // Set the URL of the page you want to redirect to
+       var url = "./login";
+       
+       // Redirect to the new page
+       window.location.href = url;
+   }
+</script>
 </html>

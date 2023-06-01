@@ -56,18 +56,40 @@ routes.get("/login", alreadyAuthenticated, async (req, res)=>{
 routes.get("/home", checkIfAuthenticated, async (req, res)=>{
     const movies = await selectmovie()
     const books = await booking()
-    console
+   
     res.render("./user/homeuser", ({user: req.user, movie:movies, cinema:books}))
 })
 //USER PROFILE
 routes.get('/profile', (req, res)=>{
-    res.render('./user/profile')
+    const users = req.user
+    res.render('./user/profile', {user: users})
+})
+routes.post("/user/edit",  async (req, res)=>{
+    try {
+        const {CustomerID,CustomerName, password} = req.body
+        if(CustomerName == "" || password == ""){  
+            res.json({message: "Please fill-up all the fields!"})  
+        }
+        else{
+            const hashedPassword = await bcrypt.hash(password, 10)
+            await updateaccount(CustomerID, CustomerName, hashedPassword)}
+            
+            res.json({message: "Updated Successfully!"})
+       
+    } catch (error) {
+        res.status(500).json({message: "Unsuccessful!"})
+    }
 })
 routes.get("/profile/bookings", (req, res)=>{
-    res.render("./user/bookings")
+    const users = req.user
+ 
+    res.render("./user/bookings", {user: users})
 })
+
 routes.get("/profile/favorites", (req, res)=>{
-    res.render("./user/favorites")
+    const users = req.user
+ 
+    res.render("./user/favorites", {user: users})
 })
 
 

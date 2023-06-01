@@ -7,9 +7,11 @@ var uname = document.querySelector("#username");
 var password = document.querySelector("#userpassword");
 var btns = document.querySelector(".button");
 
-document.getElementById('modal-form').addEventListener("click", function() {
-	document.querySelector('.bg-modal').style.display = "flex";
-});
+document.querySelectorAll('#modal-form').forEach((element)=>{
+  element.addEventListener("click", function() {
+    document.querySelector('.bg-modal').style.display = "flex";
+  });
+})
 
 document.querySelector('.close').addEventListener("click", function() {
 	document.querySelector('.bg-modal').style.display = "none";

@@ -270,7 +270,7 @@ body.sidebar-open #sidebar {
 #main-content__container {
 	border: var(--gray-tint-50) 1px dashed;
 	border-radius: 8px;
-	height: calc(100vh + 10rem);
+	height: calc(200vh + 10rem);
 	display: grid;
 	justify-content: center;
 }

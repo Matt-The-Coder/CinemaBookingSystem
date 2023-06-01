@@ -1,0 +1,29 @@
+.home-data{
+  
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Adjust as needed */  
+}
+
+.profile-content{
+    height: 400px;
+    width: 380px;
+    margin: 10px 10px;
+    border: 1px dotted black;
+    text-align: center;
+}
+
+.profile-content label{
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.profile-content input{
+    height: ;
+}
+.profile-content button{
+    display: block;
+    margin-top: 40px;
+    margin-left: 165px;
+}
