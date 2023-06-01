@@ -3,4 +3,6 @@
     border-collapse: collapse;
     height: 100%;
     width: 100%;
+    text-align: center;
+    padding: 20px 20px;
 }

@@ -36,7 +36,7 @@ const alreadyAuthenticated = (req, res, next) =>{
     }
     return next()
 }
-route.get('/admin/login', (req, res)=>{
+route.get('/admin/login', alreadyAuthenticated, (req, res)=>{
     res.render('./admin/login')
 })
 route.post('/admin/login', passport.authenticate('admin', {

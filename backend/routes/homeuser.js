@@ -36,7 +36,7 @@ initializePassport(passport,
 
 const checkIfAuthenticated = (req, res, next) => {
     if(req.isAuthenticated()){
-        return next()
+        return next();
     }
     res.redirect('/login')
 }
@@ -60,11 +60,11 @@ routes.get("/home", checkIfAuthenticated, async (req, res)=>{
     res.render("./user/homeuser", ({user: req.user, movie:movies, cinema:books}))
 })
 //USER PROFILE
-routes.get('/profile', (req, res)=>{
+routes.get('/profile', checkIfAuthenticated, (req, res)=>{
     const users = req.user
     res.render('./user/profile', {user: users})
 })
-routes.post("/user/edit",  async (req, res)=>{
+routes.post("/user/edit", checkIfAuthenticated, async (req, res)=>{
     try {
         const {CustomerID,CustomerName, password} = req.body
         if(CustomerName == "" || password == ""){  
@@ -80,17 +80,17 @@ routes.post("/user/edit",  async (req, res)=>{
         res.status(500).json({message: "Unsuccessful!"})
     }
 })
-routes.get("/profile/bookings", (req, res)=>{
+routes.get("/profile/bookings", checkIfAuthenticated, (req, res)=>{
     const users = req.user
  
     res.render("./user/bookings", {user: users})
 })
 
-routes.get("/profile/favorites", (req, res)=>{
-    const users = req.user
+// routes.get("/profile/favorites", checkIfAuthenticated,(req, res)=>{
+//     const users = req.user
  
-    res.render("./user/favorites", {user: users})
-})
+//     res.render("./user/favorites", {user: users})
+// })
 
 
 //REGISTER
