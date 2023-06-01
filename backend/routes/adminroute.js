@@ -32,7 +32,7 @@ const checkIfAuthenticated = (req, res, next) => {
 
 const alreadyAuthenticated = (req, res, next) =>{
     if(req.isAuthenticated()){
-        res.redirect('/admin')
+        res.redirect('/admin/bookings')
     }
     return next()
 }
@@ -40,7 +40,7 @@ route.get('/admin/login', alreadyAuthenticated, (req, res)=>{
     res.render('./admin/login')
 })
 route.post('/admin/login', passport.authenticate('admin', {
-    successRedirect: "/admin",
+    successRedirect: "/admin/bookings",
     failureRedirect:"/admin/login",
     failureFlash:true
     }), (req, res)=>{
