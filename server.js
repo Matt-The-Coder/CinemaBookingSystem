@@ -62,8 +62,7 @@ const db = require("./backend/database/connection");
 //FOR SERVER
 app.listen(PORT, async ()=>{
     console.log(`Server Started at port ${PORT}`)
-
-    
+  
 
 })
 app.use("/", homeuser)
