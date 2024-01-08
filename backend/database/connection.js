@@ -1,20 +1,13 @@
 const mysql = require("mysql");
 
-// const db = mysql.createPool({
-//     user: "root",
-//     password: "",
-//     host: "localhost",
-//     port: "3307",
-//     database: "cinemabook"
-// })
-
 const db = mysql.createPool({
-    host: 'bjxwp9zadzdyfnlsid8b-mysql.services.clever-cloud.com',
-    user:'uyo3diweamt0qrca',
-    password:'SSSLkR8oQLwUFVl0kyWU',
-    database: "bjxwp9zadzdyfnlsid8b",
-    port: "3306"
+    user: "root",
+    password: "",
+    host: "localhost",
+    port: "3307",
+    database: "cinemabook"
 })
+
 module.exports = (sql)=>{
     return new Promise((resolve, reject)=>{
         db.getConnection((err, connection)=>{
