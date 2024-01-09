@@ -65,5 +65,5 @@ app.listen(PORT, async ()=>{
   
 
 })
-app.use("/", homeuser)
+app.use(homeuser)
 app.use("/", adminroute)

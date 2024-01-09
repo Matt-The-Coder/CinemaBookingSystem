@@ -29,8 +29,10 @@ initializePassport(passport,
         const users = await getAccounts();
         return users.find(user => user.CustomerName == Username)},
     async (CustomerID) => {
+        console.log(CustomerID)
         const users = await getAccounts();
-        return users.find(user => user.CustomerID == CustomerID)
+        console.log(users)
+        return users?.find(user => user.CustomerID == CustomerID)
     } 
     )
 
